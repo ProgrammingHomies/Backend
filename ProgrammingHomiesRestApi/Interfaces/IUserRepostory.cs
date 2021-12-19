@@ -1,6 +1,9 @@
-﻿namespace ProgrammingHomiesRestApi.Interfaces
+﻿using ProgrammingHomiesRestApi.Entities;
+
+namespace ProgrammingHomiesRestApi.Interfaces
 {
-    public interface IUserRepostory
+    public interface IUserRepostory : ICoreRepostory<User>
     {
+
     }
 }
