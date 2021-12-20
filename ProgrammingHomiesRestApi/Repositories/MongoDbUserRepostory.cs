@@ -2,10 +2,12 @@
 using ProgrammingHomiesRestApi.Interfaces;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using Microsoft.AspNetCore.Mvc;
+using ProgrammingHomiesRestApi.Dtos.UserDtos;
 
 namespace ProgrammingHomiesRestApi.Repositories
 {
-    public class MongoDbUserRepostory : IUserRepostory
+    public class MongoDbUserRepostory : IUserRepostory 
     {
         private readonly IMongoCollection<User> usersCollection;
         private readonly FilterDefinitionBuilder<User> filterBuilder = Builders<User>.Filter;
@@ -30,14 +32,17 @@ namespace ProgrammingHomiesRestApi.Repositories
             return await usersCollection.Find(new BsonDocument()).ToListAsync();
         }
 
-        public Task<User> GetAsync(Guid id)
+        public async Task<User> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, id);
+            return await usersCollection.Find(filter).SingleOrDefaultAsync();
         }
 
-        public Task UpdateAsync(User data)
+        public async Task UpdateAsync(User data)
         {
-            throw new NotImplementedException();
+           var filter = filterBuilder.Eq(item => item.Id, data.Id);
+           var result = await usersCollection.ReplaceOneAsync(filter, data);
+
         }
     }
 }
