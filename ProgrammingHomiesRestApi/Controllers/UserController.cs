@@ -16,26 +16,45 @@ namespace ProgrammingHomiesRestApi.Controllers
             this.repository = repository;
         }
 
-
-        // Post /items
+        // Post /users
         [HttpPost]
-        public async Task<ActionResult<UserDto>> CreateItemAsync(CreateUserDto itemDto)
+        public async Task<ActionResult<UserDto>> CreateUserAsync(CreateUserDto itemDto)
         {
-            User item = new User()
+            User user = new User()
             {
                 Id = Guid.NewGuid(),
                 Biography = itemDto.Biography,
-                BirthDate = itemDto.BirthDate, 
+                BirthDate = itemDto.BirthDate,
                 Mail = itemDto.Mail,
-                Password= itemDto.Password,
+                Password = itemDto.Password,
                 ProfilePhotoUrl = itemDto.ProfilePhotoUrl,
                 Username = itemDto.Username,
             };
 
-            await repository.CreateAsync(item);
+            await repository.CreateAsync(user);
 
-            //CreatedAtAction(nameof(GetItemAsync), new { id = item.Id }, item.AsDto());
-            return Ok(item);
+
+            return CreatedAtAction(nameof(GetUsersAsync), new { id = user.Id }, user.AsDto());
         }
+
+        //Get /users
+        [HttpGet]
+        public async Task<IEnumerable<UserDto>> GetUsersAsync()
+        {
+            var items = (await repository.GetAllAsync()).Select(item => item.AsDto());
+
+            return items;
+        }
+
+
+        // DELETE /users/{id}
+        [HttpDelete("id")]
+        public async Task<ActionResult> DeleteUserAsync(Guid id)
+        {
+            await repository.DeleteAsync(id);
+
+            return NoContent();
+        }
+
     }
 }
