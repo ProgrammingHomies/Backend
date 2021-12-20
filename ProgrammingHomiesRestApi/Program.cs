@@ -21,6 +21,7 @@ builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
 });
 
 builder.Services.AddSingleton<IUserRepostory, MongoDbUserRepostory>();
+builder.Services.AddSingleton<IPostRepository, MongoDbPostRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
