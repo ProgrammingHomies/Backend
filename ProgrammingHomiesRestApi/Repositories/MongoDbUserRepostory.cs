@@ -1,6 +1,7 @@
 ﻿using ProgrammingHomiesRestApi.Entities;
 using ProgrammingHomiesRestApi.Interfaces;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace ProgrammingHomiesRestApi.Repositories
 {
@@ -20,13 +21,13 @@ namespace ProgrammingHomiesRestApi.Repositories
 
         public async Task DeleteAsync(Guid id)
         {
-            var filter = filterBuilder.Eq(user => user.Id == id);
+            var filter = filterBuilder.Eq(item => item.Id, id);
             await usersCollection.DeleteOneAsync(filter);
         }
 
-        public Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await usersCollection.Find(new BsonDocument()).ToListAsync();
         }
 
         public Task<User> GetAsync(Guid id)
