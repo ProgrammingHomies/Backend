@@ -1,18 +1,27 @@
 ﻿using ProgrammingHomiesRestApi.Entities;
 using ProgrammingHomiesRestApi.Interfaces;
+using MongoDB.Driver;
 
 namespace ProgrammingHomiesRestApi.Repositories
 {
     public class MongoDbUserRepostory : IUserRepostory
     {
-        public Task CreateAsync(User data)
+        private readonly IMongoCollection<User> usersCollection;
+        private readonly FilterDefinitionBuilder<User> filterBuilder = Builders<User>.Filter;
+        public MongoDbUserRepostory(IMongoClient mongoClient)
         {
-            throw new NotImplementedException();
+            IMongoDatabase database = mongoClient.GetDatabase(RepositoryConstant.DatabaseName);
+            usersCollection = database.GetCollection<User>(RepositoryConstant.UserCollectionName);
+        }
+        public async Task CreateAsync(User data)
+        {
+            await usersCollection.InsertOneAsync(data);
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(user => user.Id == id);
+            await usersCollection.DeleteOneAsync(filter);
         }
 
         public Task<IEnumerable<User>> GetAllAsync()
