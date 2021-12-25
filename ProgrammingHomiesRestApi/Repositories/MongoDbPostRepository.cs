@@ -15,29 +15,32 @@ namespace ProgrammingHomiesRestApi.Repositories
             IMongoDatabase database = mongoClient.GetDatabase(RepositoryConstant.DatabaseName);
             postsCollection = database.GetCollection<Post>(RepositoryConstant.PostCollectionName);
         }
-        public Task CreateAsync(Post data)
+        public async Task CreateAsync(Post data)
         {
-            throw new NotImplementedException();
+            await postsCollection.InsertOneAsync(data);
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, id);
+            await postsCollection.DeleteOneAsync(filter);
         }
 
-        public Task<IEnumerable<Post>> GetAllAsync()
+        public async Task<IEnumerable<Post>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await postsCollection.Find(new BsonDocument()).ToListAsync();
         }
 
-        public Task<Post> GetAsync(Guid id)
+        public async Task<Post> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, id);
+            return await postsCollection.Find(filter).SingleOrDefaultAsync();
         }
 
-        public Task UpdateAsync(Post data)
+        public async Task UpdateAsync(Post data)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, data.Id);
+            var result = await postsCollection.ReplaceOneAsync(filter, data);
         }
     }
 }
