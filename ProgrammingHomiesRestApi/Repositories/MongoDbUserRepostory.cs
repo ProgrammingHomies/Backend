@@ -42,7 +42,6 @@ namespace ProgrammingHomiesRestApi.Repositories
         {
            var filter = filterBuilder.Eq(item => item.Id, data.Id);
            var result = await usersCollection.ReplaceOneAsync(filter, data);
-
         }
     }
 }
