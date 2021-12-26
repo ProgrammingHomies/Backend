@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+
+  phradb:
+    image: mongo
+    environment:
+     - MONGO_INITDB_ROOT_USERNAME=phdb
+     - MONGO_INITDB_ROOT_PASSWORD=1453
+
+  phra:
+    image: ${DOCKER_REGISTRY-}phra
+    build:
+      context: .
+      dockerfile: ProgrammingHomiesRestApi/Dockerfile
+
+volumes:
+  mongo_data: 
