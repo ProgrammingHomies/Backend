@@ -4,7 +4,6 @@ namespace ProgrammingHomiesRestApi.Dtos.UserDtos
 {
     public class CreateUserDto
     {
-        public Guid Id { get; set; }
         [Required]
         public string Username { get; init; }
         [Required]
