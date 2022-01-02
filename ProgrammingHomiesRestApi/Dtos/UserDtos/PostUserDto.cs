@@ -1,16 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ProgrammingHomiesRestApi.Dtos.UserDtos
+﻿namespace phra.Dtos.UserDtos
 {
-    public class CreateUserDto
+    public record PostUserDto
     {
-        [Required]
+        public Guid Id { get; set; }
         public string Username { get; init; }
-        [Required]
-        public string Password { get; init; }
         public Uri ProfilePhotoUrl { get; init; }
-        public DateTime BirthDate { get; init; }
-        [Required]
         public string Mail { get; init; }
         public string Biography { get; init; }
         public Uri FacebookAccountUrl { get; init; }

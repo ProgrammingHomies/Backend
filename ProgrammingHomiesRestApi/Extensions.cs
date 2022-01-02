@@ -1,4 +1,5 @@
-﻿using ProgrammingHomiesRestApi.Dtos.UserDtos;
+﻿using phra.Dtos.PostDtos;
+using ProgrammingHomiesRestApi.Dtos.UserDtos;
 using ProgrammingHomiesRestApi.Entities;
 
 namespace ProgrammingHomiesRestApi
@@ -16,6 +17,18 @@ namespace ProgrammingHomiesRestApi
                 Password = item.Password,
                 ProfilePhotoUrl = item.ProfilePhotoUrl,
                 Username = item.Username,
+            };
+        }
+
+        public static PostDto AsDto(this Post item)
+        {
+            return new PostDto
+            {
+                Id = item.Id,
+                EndTime = item.EndTime,
+                PostUser = item.PostUser,   
+                Text = item.Text,
+                Title= item.Title,
             };
         }
     }
