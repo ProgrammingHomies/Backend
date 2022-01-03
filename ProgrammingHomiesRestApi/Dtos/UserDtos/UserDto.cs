@@ -9,8 +9,9 @@
         public DateTime BirthDate { get; init; }
         public string Mail { get; init; }
         public string Biography { get; init; }
-        public Uri FacebookAccountUrl { get; set; }
+        public Uri GitHubAccountUrl { get; set; }
         public Uri LinkedInAccountUrl { get; set; }
-        public Uri TwitterAccountUrl { get; set; }
+        public List<string> Interests { get; init; }
+
     }
 }

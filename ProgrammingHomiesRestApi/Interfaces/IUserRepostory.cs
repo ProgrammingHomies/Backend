@@ -5,5 +5,6 @@ namespace ProgrammingHomiesRestApi.Interfaces
 {
     public interface IUserRepostory : ICoreRepostory<User>
     {
+        Task<User> SignInUserAsync(string mail, string password);
     }
 }

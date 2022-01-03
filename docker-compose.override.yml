@@ -8,13 +8,12 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
 
   phra:
     container_name: phra
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "MongoDbSettings:Host=phradb"
     depends_on:
       - phradb
     ports:

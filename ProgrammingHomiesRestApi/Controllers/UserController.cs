@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using phra.Controllers;
+using ProgrammingHomiesRestApi.Controllers;
 using ProgrammingHomiesRestApi.Dtos.UserDtos;
 using ProgrammingHomiesRestApi.Entities;
 using ProgrammingHomiesRestApi.Interfaces;
+
 
 namespace ProgrammingHomiesRestApi.Controllers
 {
@@ -26,10 +27,11 @@ namespace ProgrammingHomiesRestApi.Controllers
                 Id = Guid.NewGuid(),
                 Biography = itemDto.Biography,
                 BirthDate = itemDto.BirthDate,
-                Mail = itemDto.Mail,
-                Password = itemDto.Password,
                 ProfilePhotoUrl = itemDto.ProfilePhotoUrl,
                 Username = itemDto.Username,
+                GitHubAccountUrl = itemDto.GitHubAccountUrl,
+                LinkedInAccountUrl = itemDto.LinkedInAccountUrl,                
+                Interests= itemDto.Interests,
             };
 
             await repository.CreateAsync(user);
@@ -78,6 +80,9 @@ namespace ProgrammingHomiesRestApi.Controllers
                 Password = user.Password,
                 ProfilePhotoUrl = user.ProfilePhotoUrl,
                 Username = user.Username,
+                Interests = user.Interests,
+                LinkedInAccountUrl = user.LinkedInAccountUrl,
+                GitHubAccountUrl= user.GitHubAccountUrl,
             };
 
             await repository.UpdateAsync(updatedUser);

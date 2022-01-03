@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using ProgrammingHomiesRestApi.Entities;
 
-namespace phra.Helpers
+namespace ProgrammingHomiesRestApi.Helpers
 {
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]

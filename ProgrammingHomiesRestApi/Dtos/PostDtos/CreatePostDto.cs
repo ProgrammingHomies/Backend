@@ -1,6 +1,6 @@
-﻿using phra.Dtos.UserDtos;
+﻿using ProgrammingHomiesRestApi.Dtos.UserDtos;
 
-namespace phra.Dtos.PostDtos
+namespace ProgrammingHomiesRestApi.Dtos.PostDtos
 {
     public class CreatePostDto
     {

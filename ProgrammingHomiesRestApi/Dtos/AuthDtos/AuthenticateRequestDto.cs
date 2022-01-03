@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace phra.Dtos.AuthDtos
+namespace ProgrammingHomiesRestApi.Dtos.AuthDtos
 {
-    public class AuthenticateRequest
+    public class AuthenticateRequestDto
     {
 
         [Required] public string Mail { get; set; }

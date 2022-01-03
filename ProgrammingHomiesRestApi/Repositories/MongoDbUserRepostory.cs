@@ -7,7 +7,7 @@ using ProgrammingHomiesRestApi.Dtos.UserDtos;
 
 namespace ProgrammingHomiesRestApi.Repositories
 {
-    public class MongoDbUserRepostory : IUserRepostory 
+    public class MongoDbUserRepostory : IUserRepostory
     {
         private readonly IMongoCollection<User> usersCollection;
         private readonly FilterDefinitionBuilder<User> filterBuilder = Builders<User>.Filter;
@@ -18,6 +18,11 @@ namespace ProgrammingHomiesRestApi.Repositories
         }
         public async Task CreateAsync(User data)
         {
+            var filterMail = filterBuilder.Eq(item => item.Mail, data.Mail);
+            User user = await usersCollection.Find(filterMail).SingleOrDefaultAsync();
+
+            if (user != null) throw new Exception("Bu mail kullanımda."); 
+
             await usersCollection.InsertOneAsync(data);
         }
 
@@ -36,6 +41,17 @@ namespace ProgrammingHomiesRestApi.Repositories
         {
             var filter = filterBuilder.Eq(item => item.Id, id);
             return await usersCollection.Find(filter).SingleOrDefaultAsync();
+        }
+
+        public async Task<User> SignInUserAsync(string mail, string password)
+        {
+            var filterMail = filterBuilder.Eq(item => item.Mail, mail);
+
+            User user = await usersCollection.Find(filterMail).SingleOrDefaultAsync();
+
+            if (user == null) return null;
+
+            return user;
         }
 
         public async Task UpdateAsync(User data)

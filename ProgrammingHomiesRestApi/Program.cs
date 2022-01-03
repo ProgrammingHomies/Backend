@@ -2,8 +2,11 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using phra.Helpers;
+using pProgrammingHomiesRestApi.Services;
 using ProgrammingHomiesRestApi.Interfaces;
 using ProgrammingHomiesRestApi.Repositories;
+using ProgrammingHomiesRestApi.Services;
 using ProgrammingHomiesRestApi.Settings;
 using System.Net.Mime;
 using System.Text.Json;
@@ -42,6 +45,8 @@ builder.Services.AddHealthChecks()
                             timeout: TimeSpan.FromSeconds(3),
                             tags: new[] { "ready" });
 
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,6 +60,16 @@ app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Programming
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+// global cors policy
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
+// custom jwt auth middleware
+app.UseMiddleware<JwtMiddleware>();
+
 
 app.MapControllers();
 

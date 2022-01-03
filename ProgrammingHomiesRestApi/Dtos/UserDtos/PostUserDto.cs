@@ -7,8 +7,7 @@
         public Uri ProfilePhotoUrl { get; init; }
         public string Mail { get; init; }
         public string Biography { get; init; }
-        public Uri FacebookAccountUrl { get; init; }
         public Uri LinkedInAccountUrl { get; init; }
-        public Uri TwitterAccountUrl { get; init; }
+        public Uri GitHubAccountUrl { get; init; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace phra.Helpers
+﻿namespace ProgrammingHomiesRestApi.Helpers
 {
     public class AppSettings
     {
