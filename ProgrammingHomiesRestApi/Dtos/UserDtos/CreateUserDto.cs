@@ -4,7 +4,6 @@ namespace ProgrammingHomiesRestApi.Dtos.UserDtos
 {
     public class CreateUserDto
     {
-        [Required]
         public string Username { get; init; }
         [Required]
         public string Password { get; init; }
@@ -13,8 +12,8 @@ namespace ProgrammingHomiesRestApi.Dtos.UserDtos
         [Required]
         public string Mail { get; init; }
         public string Biography { get; init; }
-        public Uri FacebookAccountUrl { get; init; }
+        public Uri GitHubAccountUrl { get; init; }
         public Uri LinkedInAccountUrl { get; init; }
-        public Uri TwitterAccountUrl { get; init; }
+        public List<string> Interests { get; init; }
     }
 }

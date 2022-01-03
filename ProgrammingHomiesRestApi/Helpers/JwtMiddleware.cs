@@ -2,9 +2,9 @@
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using phra.Services;
+using ProgrammingHomiesRestApi.Interfaces;
 
-namespace phra.Helpers
+namespace ProgrammingHomiesRestApi.Helpers
 {
     public class JwtMiddleware
     {
@@ -17,17 +17,17 @@ namespace phra.Helpers
             _appSettings = appSettings.Value;
         }
 
-        public async Task Invoke(HttpContext context, IUserService userService)
+        public async Task Invoke(HttpContext context, IAuthService authService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null)
-                attachUserToContext(context, userService, token);
+                attachUserToContext(context, authService, token);
 
             await _next(context);
         }
 
-        private void attachUserToContext(HttpContext context, IUserService userService, string token)
+        private async void attachUserToContext(HttpContext context, IAuthService userService, string token)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace phra.Helpers
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-                context.Items["User"] = userService.GetById(userId);
+                context.Items["User"] = await userService.GetById(userId);
             }
             catch
             {

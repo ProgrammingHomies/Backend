@@ -1,6 +1,8 @@
-﻿using phra.Dtos.PostDtos;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using phra.Dtos.PostDtos;
 using ProgrammingHomiesRestApi.Dtos.UserDtos;
 using ProgrammingHomiesRestApi.Entities;
+using System.Security.Cryptography;
 
 namespace ProgrammingHomiesRestApi
 {
@@ -30,6 +32,25 @@ namespace ProgrammingHomiesRestApi
                 Text = item.Text,
                 Title= item.Title,
             };
+        }
+
+        public static string ToHash(this string password)
+        {
+            byte[] salt = new byte[128 / 8];
+            using (var rngCsp = new RNGCryptoServiceProvider())
+            {
+                rngCsp.GetNonZeroBytes(salt);
+            }
+            Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
+
+            // derive a 256-bit subkey (use HMACSHA256 with 100,000 iterations)
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+            return hashed;
         }
     }
 }
