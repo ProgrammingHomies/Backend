@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+
+  phra:
+    image: ${DOCKER_REGISTRY-}phra
+    build:
+      context: .
+      dockerfile: ProgrammingHomiesRestApi/Dockerfile
+    ports:
+     - "8000:80"
+
+  phradb:
+    image: mongo
+    restart: always
+    ports:
+     - "27017:27017" 
+    environment:
+     - MONGO_INITDB_ROOT_USERNAME=phdb
+     - MONGO_INITDB_ROOT_PASSWORD=1453
+
+volumes:
+  mongo_data: 

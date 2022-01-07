@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  
+  phradb: 
+    container_name: phradb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
+
+  phra:
+    container_name: phra
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - phradb
+    ports:
+      - "8000:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
