@@ -2,6 +2,8 @@
 using phra.Controllers;
 using phra.Dtos.PostDtos;
 using ProgrammingHomiesRestApi;
+using ProgrammingHomiesRestApi.Controllers;
+using ProgrammingHomiesRestApi.Dtos.PostDtos;
 using ProgrammingHomiesRestApi.Dtos.UserDtos;
 using ProgrammingHomiesRestApi.Entities;
 using ProgrammingHomiesRestApi.Interfaces;
