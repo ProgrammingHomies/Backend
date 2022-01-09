@@ -1,19 +1,19 @@
  ## KULLANILAN PAKETLER
-- MongoDB.Driver  &rarr  ".Net" için resmi MongoDb driverıdır.
-- System.IdentityModel.Tokens.Jwt  &rarr  JSON Web Tokenleri oluşturmak ve doğrulamak için destek sağlayan türleri içerir.
-- microsoft.VisualStudio.Azure.Containers.Tools.Targets  &rarr  Konteynerler için Visual Studio aracıdır.
-- Swashbuckle.AspNetCore  &rarr  ASP.Net Core ile geliştirilen API'leri dökümante etmek için kullanılan swagger aracıdır.
-- AspNetCore.HealthChecks.MongoDb  &rarr  MongoDb'nin sorun denetimi paketidir.
+- MongoDB.Driver  &rarr;  ".Net" için resmi MongoDb driverıdır.
+- System.IdentityModel.Tokens.Jwt  &rarr;  JSON Web Tokenleri oluşturmak ve doğrulamak için destek sağlayan türleri içerir.
+- microsoft.VisualStudio.Azure.Containers.Tools.Targets  &rarr;  Konteynerler için Visual Studio aracıdır.
+- Swashbuckle.AspNetCore  &rarr;  ASP.Net Core ile geliştirilen API'leri dökümante etmek için kullanılan swagger aracıdır.
+- AspNetCore.HealthChecks.MongoDb  &rarr;  MongoDb'nin sorun denetimi paketidir.
 
  ## PROJE MİMARİSİ
-- Controllers  &rarr  Web API Controlleri, Asp.Net MVC Controllere benzerdir. Gelen HTTP istekleriyle ilgilenir ve gelen isteklere geri cevap gönderir.
-- DTOS  &rarr  Entitylerin, frontendte kullanmak üzere oluşturduğumuz versiyonlarını içerir.
-- Entities  &rarr Veri tabanındaki neslerin veri yapılarını içerir.
-- Helpers  &rarr  Projedeki farklı yerlerde kullanılacak olan ortak fonksiyonlar burada bulunur.
-- Interfaces  &rarr  Interfaceleri içeren klasördür.
-- Repositories  &rarr  Controller ile MongoDb arasındaki katmanları içerir.
-- Services  &rarr  Bazı servisleri içeren klasördür.
-- Settings  &rarr  MongoDbSettings gibi çeşitli ayarları içerir.
+- Controllers  &rarr;  Web API Controlleri, Asp.Net MVC Controllere benzerdir. Gelen HTTP istekleriyle ilgilenir ve gelen isteklere geri cevap gönderir.
+- DTOS  &rarr;  Entitylerin, frontendte kullanmak üzere oluşturduğumuz versiyonlarını içerir.
+- Entities  &rarr; Veri tabanındaki neslerin veri yapılarını içerir.
+- Helpers  &rarr;  Projedeki farklı yerlerde kullanılacak olan ortak fonksiyonlar burada bulunur.
+- Interfaces  &rarr;  Interfaceleri içeren klasördür.
+- Repositories  &rarr;  Controller ile MongoDb arasındaki katmanları içerir.
+- Services  &rarr;  Bazı servisleri içeren klasördür.
+- Settings  &rarr;  MongoDbSettings gibi çeşitli ayarları içerir.
 
  ## PROJE ÜZERİNE
  Biz, yazılımcılar için bir ortaklık platformu oluşturmak için yola çıktık. Ekip arkadaşı arayan yazılımcıların projelerini tanıtabilmeleri için bir "gönderi mekanizması" oluşturduk. Böylece sitemiz aracılığıyla kendilerine ortak bulabileceklerdi. Amacımız, gönderiler üzerinden iletişim kurabilecekleri, profillerini düzenleyebilecekleri, sonuç odaklı, pratik bir site oluşturmaktı. 
